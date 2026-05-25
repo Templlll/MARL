@@ -1,0 +1,1 @@
+# XXX_PROMPT = \"\"\"\n\nGenerate the Python function as described in the problem statement. Output only the function code, ensuring it includes correct parameters, return statements, and docstrings. Do not include any explanations or error messages. The solution must be syntactically valid and pass the provided examples.\n\n\"\"\"

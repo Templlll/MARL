@@ -3,17 +3,17 @@
         "algo": {
             "action_aggregation": "prod",
             "actor_num_mini_batch": 1,
-            "clip_param": 0.05,
+            "clip_param": 0.2,
             "critic_epoch": 5,
             "critic_num_mini_batch": 1,
             "entropy_coef": 0.01,
-            "fixed_order": false,
+            "fixed_order": true,
             "gae_lambda": 0.95,
-            "gamma": 0.95,
+            "gamma": 0.99,
             "huber_delta": 10.0,
             "max_grad_norm": 10.0,
             "ppo_epoch": 5,
-            "share_param": false,
+            "share_param": true,
             "use_clipped_value_loss": true,
             "use_gae": true,
             "use_huber_loss": true,
@@ -76,11 +76,11 @@
         }
     },
     "env_args": {
-        "map_name": "8m_vs_9m",
+        "map_name": "3s5z",
         "state_type": "EP"
     },
     "main_args": {
-        "algo": "happo",
+        "algo": "mappo",
         "env": "smac",
         "exp_name": "report",
         "load_config": ""

@@ -28,7 +28,7 @@
         },
         "eval": {
             "eval_episodes": 40,
-            "n_eval_rollout_threads": 10,
+            "n_eval_rollout_threads": 4,
             "use_eval": true
         },
         "logger": {
@@ -68,7 +68,7 @@
             "eval_interval": 25,
             "log_interval": 5,
             "model_dir": null,
-            "n_rollout_threads": 20,
+            "n_rollout_threads": 8,
             "num_env_steps": 20000000,
             "use_linear_lr_decay": false,
             "use_valuenorm": true,

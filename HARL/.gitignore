@@ -422,3 +422,12 @@ tags
 **/*.dae
 **/*.off
 **/*.mtl
+
+# StarCraft II 游戏本体及安装包（大文件，不纳入版本控制）
+StarCraftII/
+SC2.4.10.zip
+*.SC2Map
+
+# 训练结果（模型权重、日志、tensorboard 数据）
+examples/results/
+results/

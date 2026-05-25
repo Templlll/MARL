@@ -110,7 +110,7 @@ def reward_shaping(_obs, act, agent):
     if act is None:
         return 0.0, 0.0
 
-    # ---- A) Official-metric proxy reward (delay / queue / waiting_time) ----
+    # ---- A) 收集进口车道车辆信息 ----
     enter_vehicles = [
         v
         for v in vehicles
@@ -118,26 +118,29 @@ def reward_shaping(_obs, act, agent):
     ]
 
     if len(enter_vehicles) > 0:
-        avg_delay = float(np.mean([float(v.get("delay", 0.0)) for v in enter_vehicles]))
         avg_wait = float(np.mean([float(v.get("waiting_time", 0.0)) for v in enter_vehicles]))
+        avg_delay = float(np.mean([float(v.get("delay", 0.0)) for v in enter_vehicles]))
         queue_len = float(sum(1 for v in enter_vehicles if float(v.get("speed", 0.0)) <= 0.1))
+        n_veh = float(len(enter_vehicles))
     else:
-        avg_delay, avg_wait, queue_len = 0.0, 0.0, 0.0
+        avg_wait, avg_delay, queue_len, n_veh = 0.0, 0.0, 0.0, 0.0
 
-    score_proxy = (
-        1.0 / (1.0 + avg_delay / 9.0)
-        + 1.0 / (1.0 + queue_len / 10.0)
-        + 1.0 / (1.0 + avg_wait / 8.0)
-    )
+    # ---- B) 基础奖励：等待时间变化量（差分奖励，信号稠密） ----
+    # 用等待时间的减少量直接作为奖励核心，与官方评分指标对齐
+    prev_avg_wait = float(getattr(agent.preprocess, "prev_avg_wait", avg_wait))
+    prev_queue_len = float(getattr(agent.preprocess, "prev_queue_len", queue_len))
 
-    prev_score_proxy = float(getattr(agent.preprocess, "prev_score_proxy", score_proxy))
-    delta_score = score_proxy - prev_score_proxy
-    agent.preprocess.prev_score_proxy = score_proxy
+    # 等待时间下降 → 正奖励；上升 → 负奖励（tanh压缩防止量级爆炸）
+    delta_wait = prev_avg_wait - avg_wait        # 等待时间减少为正
+    delta_queue = prev_queue_len - queue_len     # 排队减少为正
 
-    instant_quality = (score_proxy - 1.5) / 1.5
-    base_reward = float(np.tanh(2.0 * delta_score) + 0.2 * instant_quality)
+    agent.preprocess.prev_avg_wait = avg_wait
+    agent.preprocess.prev_queue_len = queue_len
 
-    # ---- B) Phase matching (choose higher-pressure group) ----
+    # 归一化：等待时间典型范围约0-60s，排队约0-14辆
+    base_reward = float(np.tanh(delta_wait / 10.0) + 0.5 * np.tanh(delta_queue / 5.0))
+
+    # ---- C) 相位匹配奖励：选择压力最大的相位组 ----
     lane_group = get_webster_lane_group()
     group_pressure = {}
     for group_id, lane_ids in lane_group.items():
@@ -145,56 +148,61 @@ def reward_shaping(_obs, act, agent):
         for v in enter_vehicles:
             if v.get("lane", None) not in lane_ids:
                 continue
+            # 排队车辆权重高，等待时间作为辅助信号
+            is_queued = 1.0 if float(v.get("speed", 0.0)) <= 0.1 else 0.3
             v_wait = float(v.get("waiting_time", 0.0))
-            v_delay = float(v.get("delay", 0.0))
-            is_queued = 1.0 if float(v.get("speed", 0.0)) <= 0.1 else 0.0
-            pressure += 1.0 * is_queued + 0.05 * v_wait + 0.02 * v_delay
+            pressure += is_queued + 0.02 * v_wait
         group_pressure[int(group_id)] = pressure
 
-    best_phase = max(group_pressure, key=group_pressure.get) if group_pressure else 0
     chosen_phase = int(act[1]) if len(act) > 1 and act[1] is not None else 0
     chosen_duration = int(act[2]) if len(act) > 2 and act[2] is not None else 0
 
-    max_pressure = float(group_pressure.get(best_phase, 0.0))
-    chosen_pressure = float(group_pressure.get(chosen_phase, 0.0))
-
-    if max_pressure > 0.0:
-        phase_match = (chosen_pressure / (max_pressure + 1e-6)) - 0.5
+    if group_pressure:
+        best_phase = max(group_pressure, key=group_pressure.get)
+        max_pressure = float(group_pressure[best_phase])
+        chosen_pressure = float(group_pressure.get(chosen_phase, 0.0))
+        # 归一化到 [-0.5, 0.5]
+        phase_match = (chosen_pressure / (max_pressure + 1e-6)) - 0.5 if max_pressure > 0 else 0.0
     else:
-        phase_match = 0.0
+        best_phase, max_pressure, chosen_pressure, phase_match = 0, 0.0, 0.0, 0.0
 
-    # ---- C) Switching penalties (penalize green interval < 8s) ----
+    # ---- D) 频繁切换惩罚（绿灯时长 < 8s 时惩罚）----
     frame_time = float(frame_state.get("frame_time", 0.0))
+    # 判断时间单位：若frame_time > 1e4则推断单位为毫秒
     time_scale = 1000.0 if frame_time > 1.0e4 else 1.0
 
     last_phase = getattr(agent.preprocess, "last_phase_index", None)
     last_switch_time = getattr(agent.preprocess, "last_switch_time", None)
 
-    fast_switch_penalty = 0.0
+    switch_penalty = 0.0
     if last_phase is not None and chosen_phase != last_phase:
-        fast_switch_penalty -= 0.02
+        # 发生相位切换：轻微惩罚
+        switch_penalty -= 0.05
         if last_switch_time is not None:
             interval_sec = (frame_time - float(last_switch_time)) / time_scale
+            # 绿灯时长过短（< 8s）额外惩罚，对应官方评分规则
             if interval_sec < 8.0:
-                fast_switch_penalty -= 0.15
+                switch_penalty -= 0.2
         agent.preprocess.last_switch_time = frame_time
     elif last_switch_time is None:
         agent.preprocess.last_switch_time = frame_time
 
     agent.preprocess.last_phase_index = chosen_phase
 
-    # ---- D) Duration matching: longer green when pressure higher ----
+    # ---- E) 时长匹配奖励：压力越大应给越长的绿灯 ----
+    # DIM_OF_ACTION_DURATION=20，动作索引0-19对应时长步（每步2s，共0-38s）
     if max_pressure > 0.0:
         pressure_ratio = float(np.clip(chosen_pressure / (max_pressure + 1e-6), 0.0, 1.0))
     else:
-        pressure_ratio = 0.0
-    target_duration = int(np.round(pressure_ratio * (Config.DIM_OF_ACTION_DURATION - 1)))
-    duration_gap = abs(chosen_duration - target_duration)
-    duration_match = 0.5 - float(duration_gap) / max(1.0, (Config.DIM_OF_ACTION_DURATION - 1))
+        pressure_ratio = 0.5  # 无车时取中间时长即可
+    target_duration_idx = int(np.round(pressure_ratio * (Config.DIM_OF_ACTION_DURATION - 1)))
+    duration_gap = abs(chosen_duration - target_duration_idx)
+    # 归一化到 [-0.5, 0.5]，量纲与 phase_match 对称
+    duration_match = 0.5 - float(duration_gap) / float(Config.DIM_OF_ACTION_DURATION - 1)
 
-    # ---- E) Two-head rewards ----
-    # phase head: emphasize phase matching; duration head: emphasize duration matching.
-    phase_reward = base_reward + 0.3 * phase_match + fast_switch_penalty
-    duration_reward = base_reward + 0.3 * duration_match + fast_switch_penalty
+    # ---- F) 双头奖励合成 ----
+    # phase_head 强调相位匹配；duration_head 强调时长匹配；两头都包含基础奖励和切换惩罚
+    phase_reward = 0.6 * base_reward + 0.4 * phase_match + switch_penalty
+    duration_reward = 0.6 * base_reward + 0.4 * duration_match + switch_penalty
 
     return float(phase_reward), float(duration_reward)

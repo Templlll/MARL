@@ -1,0 +1,628 @@
+2026-05-24 12:18:56 - Error: unexpected indent (<string>, line 1).
+ Solution:  Good luck and have fun with this coding challenge!.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate([4, 88]) == 88
+    assert candidate([4, 5, 6, 7, 2, 122]) == 122
+    assert candidate([4, 0, 6, 7]) == 0
+    assert candidate([4, 4, 6, 8]) == 12
+
+    # Check some edge cases that are easy to work out by hand.
+    
+
+2026-05-24 12:18:56 - Error: unexpected indent (<string>, line 1).
+ Solution:  You may want to add unit tests to your code to ensure it works correctly..
+ Test: 
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate(6) == False
+    assert candidate(101) == True
+    assert candidate(11) == True
+    assert candidate(13441) == True
+    assert candidate(61) == True
+    assert candidate(4) == False
+    assert candidate(1) == False
+    assert candidate(5) == True
+    assert candidate(11) == True
+    assert candidate(17) == True
+    assert candidate(5 * 17) == False
+    assert candidate(11 * 7) == False
+    assert candidate(13441 * 19) == False
+
+
+2026-05-24 12:18:56 - Error: unexpected indent (<string>, line 1).
+ Solution:  Please run your program in the Jupyter notebook, if you want to see its output..
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(['**', '*', '+'], [2, 3, 4, 5]) == 37
+    assert candidate(['+', '*', '-'], [2, 3, 4, 5]) == 9
+    assert candidate(['//', '*'], [7, 3, 4]) == 8, "This prints if this assert fails 1 (good for debugging!)"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+
+
+2026-05-24 12:18:56 - Error: unexpected indent (<string>, line 1).
+ Solution:  If the parameter passed is not a valid string, the function should return False..
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate('[[]]') == True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate('[]]]]]]][[[[[]') == False
+    assert candidate('[][]') == False
+    assert candidate(('[]')) == False
+    assert candidate('[[[[]]]]') == True
+    assert candidate('[]]]]]]]]]]') == False
+    assert candidate('[][][[]]') == True
+    assert candidate('[[]') == False
+    assert candidate('[]]') == False
+    assert candidate('[[]][[') == True
+    assert candidate('[[][]]') == True
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate('') == False, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate('[[[[[[[[') == False
+    assert candidate(']]]]]]]]') == False
+
+
+2026-05-24 12:18:56 - Error: unexpected indent (<string>, line 1).
+ Solution:  You may add or remove any necessary code if you'd like, but I will make sure it always works. .
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([1,2,3],[-1,-2,-3])==[2,4,6], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([1,2,3,5],[-1,2,3,4])==[2,0,0,1], "This prints if this assert fails 1 (good for debugging!)"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+
+
+2026-05-24 12:18:57 - Error: unexpected indent (<string>, line 1).
+ Solution:  You may assume that n is always > 0. The code is not case sensitive..
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(4) == 288, "Test 4"
+    assert candidate(5) == 34560, "Test 5"
+    assert candidate(7) == 125411328000, "Test 7"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1) == 1, "Test 1"
+
+
+2026-05-24 12:18:57 - Error: unexpected indent (<string>, line 1).
+ Solution:  Your solution should not include additional functions..
+ Test: 
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate("<>")
+    assert candidate("<<><>>")
+    assert candidate("<><><<><>><>")
+    assert candidate("<><><<<><><>><>><<><><<>>>")
+    assert not candidate("<<<><>>>>")
+    assert not candidate("><<>")
+    assert not candidate("<")
+    assert not candidate("<<<<")
+    assert not candidate(">")
+    assert not candidate("<<>")
+    assert not candidate("<><><<><>><>><<>")
+    assert not candidate("<><><<><>><>>><>")
+
+
+2026-05-24 12:18:57 - Error: .
+ Solution: def is_multiply_prime(a):
+    pass.
+ Test: def check(candidate):
+
+    assert candidate(5) == False
+    assert candidate(30) == True
+    assert candidate(8) == True
+    assert candidate(10) == False
+    assert candidate(125) == True
+    assert candidate(3 * 5 * 7) == True
+    assert candidate(3 * 6 * 7) == False
+    assert candidate(9 * 9 * 9) == False
+    assert candidate(11 * 9 * 9) == False
+    assert candidate(11 * 13 * 7) == True
+
+
+2026-05-24 12:18:57 - Error: Error.
+ Solution: def by_length(arr):
+    for num in arr:
+        num = int(str(num)[-1]) + 1
+    return arr.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([2, 1, 1, 4, 5, 8, 2, 3]) == ["Eight", "Five", "Four", "Three", "Two", "Two", "One", "One"], "Error"
+    assert candidate([]) == [], "Error"
+    assert candidate([1, -1 , 55]) == ['One'], "Error"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate([1, -1, 3, 2]) == ["Three", "Two", "One"]
+    assert candidate([9, 4, 8]) == ["Nine", "Eight", "Four"]
+
+
+2026-05-24 12:18:58 - Error: .
+ Solution: def longest(strings: List[str]) -> Optional[str]:
+    if not strings:
+        return None
+    sorted_strings = sorted(strings, key=len)
+    return sorted_strings[-1] if sorted_strings else None.
+ Test: 
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == None
+    assert candidate(['x', 'y', 'z']) == 'x'
+    assert candidate(['x', 'yyy', 'zzzz', 'www', 'kkkk', 'abc']) == 'zzzz'
+
+2026-05-24 12:18:58 - Error: .
+ Solution: def check_if_last_char_is_a_letter(txt):
+    return txt[-1].isalpha().
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate("apple") == False
+    assert candidate("apple pi e") == True
+    assert candidate("eeeee") == False
+    assert candidate("A") == True
+    assert candidate("Pumpkin pie ") == False
+    assert candidate("Pumpkin pie 1") == False
+    assert candidate("") == False
+    assert candidate("eeeee e ") == False
+    assert candidate("apple pie") == False
+    assert candidate("apple pi e ") == False
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+
+2026-05-24 12:18:58 - Error: unexpected indent (<string>, line 1).
+ Solution:  Provide reasonable explanations for your code and any assumptions made about the input strings and substring..
+ Test: 
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('', 'x') == 0
+    assert candidate('xyxyxyx', 'x') == 4
+    assert candidate('cacacacac', 'cac') == 4
+    assert candidate('john doe', 'john') == 1
+
+2026-05-24 12:18:58 - Error: unexpected indent (<string>, line 1).
+ Solution:  Provide a explanation at the end on how the user can use the program.
+ Test: 
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate([-1, -2, 4, 5, 6]) == [4, 5, 6]
+    assert candidate([5, 3, -5, 2, 3, 3, 9, 0, 123, 1, -10]) == [5, 3, 2, 3, 3, 9, 123, 1]
+    assert candidate([-1, -2]) == []
+    assert candidate([]) == []
+
+
+2026-05-24 12:18:58 - Error: invalid literal for int() with base 10: '-'.
+ Solution: def order_by_points(nums):
+    sorted_nums = sorted(nums, key=lambda x: sum(map(int, str(x))))
+    return sorted_nums.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    assert candidate([1234,423,463,145,2,423,423,53,6,37,3457,3,56,0,46]) == [0, 2, 3, 6, 53, 423, 423, 423, 1234, 145, 37, 46, 56, 463, 3457]
+    assert candidate([]) == []
+    assert candidate([1, -11, -32, 43, 54, -98, 2, -3]) == [-3, -32, -98, -11, 1, 2, 43, 54]
+    assert candidate([1,2,3,4,5,6,7,8,9,10,11]) == [1, 10, 2, 11, 3, 4, 5, 6, 7, 8, 9]
+    assert candidate([0,6,6,-76,-21,23,4]) == [-76, -21, 0, 4, 23, 6, 6]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+
+
+2026-05-24 12:18:59 - Error: name 'k' is not defined.
+ Solution: def rolling_max(numbers: List[int]) -> List[int]:
+    """ from a given list of integers, generate a list of rolling maximum element found until given moment in the sequence.
+
+    Parameters:
+        numbers (List[int]): A list of integers.
+
+    Returns:
+        List[int]: A list of rolling maximum element found until given moment in the sequence.
+
+    Examples:
+        >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
+        [1, 2, 3, 3, 3, 4, 4]
+    """
+    answers = []
+    for i in range(len(numbers)):
+        i_idx = i
+        for j in range(min(i, k)):
+            if numbers[i_idx] > numbers[i_idx - 1]:
+                i_idx += 1
+        answers.append(numbers[i_idx - 1])
+    return answers.
+ Test: 
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate([]) == []
+    assert candidate([1, 2, 3, 4]) == [1, 2, 3, 4]
+    assert candidate([4, 3, 2, 1]) == [4, 4, 4, 4]
+    assert candidate([3, 2, 3, 100, 3]) == [3, 3, 3, 100, 100]
+
+2026-05-24 12:19:00 - Error: .
+ Solution: def words_string(s):
+    import re
+    s = re.sub(',', '|', s)
+    return s.split()
+    return [w for w in s.split() if w != None].
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
+    assert candidate("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
+    assert candidate("Hi, my name") == ["Hi", "my", "name"]
+    assert candidate("One,, two, three, four, five, six,") == ["One", "two", "three", "four", "five", "six"]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate("") == []
+    assert candidate("ahmed     , gamal") == ["ahmed", "gamal"]
+
+
+2026-05-24 12:19:00 - Error: .
+ Solution: def can_arrange(arr):
+    largest = arr[0]
+    largest_index = 0
+    for i in range(1, len(arr)):
+        if arr[i] >= largest:
+            largest = arr[i]
+            largest_index = i
+    if largest_index == 0:
+        return -1
+    else:
+        return largest_index.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,4,3,5])==3
+    assert candidate([1,2,4,5])==-1
+    assert candidate([1,4,2,5,6,7,8,9,10])==2
+    assert candidate([4,8,5,7,3])==4
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([])==-1
+
+
+2026-05-24 12:19:00 - Error: not all arguments converted during string formatting.
+ Solution: def even_odd_count(num):
+    even_count = 0
+    odd_count = 0
+    for digit in str(num):
+        if digit % 2 == 0:
+            even_count += 1
+        else:
+            odd_count += 1
+    return (even_count, odd_count).
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(7) == (0, 1)
+    assert candidate(-78) == (1, 1)
+    assert candidate(3452) == (2, 2)
+    assert candidate(346211) == (3, 3)
+    assert candidate(-345821) == (3, 3)
+    assert candidate(-2) == (1, 0)
+    assert candidate(-45347) == (2, 3)
+    assert candidate(0) == (1, 0)
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+
+2026-05-24 12:19:00 - Error: .
+ Solution: def largest_divisor(n: int) -> int:
+    """
+    For a given number n, find the largest number that divides n evenly, smaller than n
+    """
+    largest_divisor = n
+    for i in range(1, n + 1):
+        if n % i == 0:
+            largest_divisor = i
+    return largest_divisor.
+ Test: 
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate(3) == 1
+    assert candidate(7) == 1
+    assert candidate(10) == 5
+    assert candidate(100) == 50
+    assert candidate(49) == 7
+
+2026-05-24 12:19:00 - Error: unexpected indent (<string>, line 1).
+ Solution:  Note that this is not a practice problem..
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate("") == 0, "Error"
+    assert candidate("abAB") == 131, "Error"
+    assert candidate("abcCd") == 67, "Error"
+    assert candidate("helloE") == 69, "Error"
+    assert candidate("woArBld") == 131, "Error"
+    assert candidate("aAaaaXa") == 153, "Error"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate(" How are yOu?") == 151, "Error"
+    assert candidate("You arE Very Smart") == 327, "Error"
+
+
+2026-05-24 12:19:01 - Error: .
+ Solution: def sort_numbers(numbers):
+    """ Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sort_numbers('three one five')
+    'one three five'
+    """
+    return sorted([int(num) for num in numbers.split()]).
+ Test: 
+
+METADATA = {
+    'author': 'jt',
+    'dataset': 'test'
+}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate('three') == 'three'
+    assert candidate('three five nine') == 'three five nine'
+    assert candidate('five zero four seven nine eight') == 'zero four five seven eight nine'
+    assert candidate('six five four three two one zero') == 'zero one two three four five six'
+
+2026-05-24 12:19:01 - Error: unexpected indent (<string>, line 1).
+ Solution:  Please do not change the function name or anything else in the given code..
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(3, 4, 5) == True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate(1, 2, 3) == False
+    assert candidate(10, 6, 8) == True
+    assert candidate(2, 2, 2) == False
+    assert candidate(7, 24, 25) == True
+    assert candidate(10, 5, 7) == False
+    assert candidate(5, 12, 13) == True
+    assert candidate(15, 8, 17) == True
+    assert candidate(48, 55, 73) == True
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(1, 1, 1) == False, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate(2, 2, 10) == False
+
+
+2026-05-24 12:19:01 - Error: Function max_fill is not defined in the solution..
+ Solution: import collections
+import itertools.
+ Test: def check(candidate):
+
+
+    # Check some simple cases
+    assert True, "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([[0,0,1,0], [0,1,0,0], [1,1,1,1]], 1) == 6, "Error"
+    assert candidate([[0,0,1,1], [0,0,0,0], [1,1,1,1], [0,1,1,1]], 2) == 5, "Error"
+    assert candidate([[0,0,0], [0,0,0]], 5) == 0, "Error"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+    assert candidate([[1,1,1,1], [1,1,1,1]], 2) == 4, "Error"
+    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, "Error"
+
+
+2026-05-24 12:19:01 - Error: First test error: 2.
+ Solution: def hex_key(num):
+    """You have been tasked to write a function that receives 
+    a hexadecimal number as a string and counts the number of hexadecimal 
+    digits that are primes (prime number, or a prime, is a natural number 
+    greater than 1 that is not a product of two smaller natural numbers).
+    Hexadecimal digits are 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F.
+    Prime numbers are 2, 3, 5, 7, 11, 13, 17,...
+    So you have to determine a number of the following digits: 2, 3, 5, 7, 
+    B (=decimal 11), D (=decimal 13).
+    Note: you may assume the input is always correct or empty string, 
+    and symbols A,B,C,D,E,F are always uppercase.
+    Examples:
+    For num = "AB" the output should be 1.
+    For num = "1077E" the output should be 2.
+    For num = "ABED1A33" the output should be 4.
+    For num = "123456789ABCDEF0" the output should be 6.
+    For num = "2020" the output should be 2.
+    """
+    count = 0
+    for i in num:
+        if num.count(i) > 0:
+            count += 1
+    return count.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate("AB") == 1, "First test error: " + str(candidate("AB"))      
+    assert candidate("1077E") == 2, "Second test error: " + str(candidate("1077E"))  
+    assert candidate("ABED1A33") == 4, "Third test error: " + str(candidate("ABED1A33"))      
+    assert candidate("2020") == 2, "Fourth test error: " + str(candidate("2020"))  
+    assert candidate("123456789ABCDEF0") == 6, "Fifth test error: " + str(candidate("123456789ABCDEF0"))      
+    assert candidate("112233445566778899AABBCCDDEEFF00") == 12, "Sixth test error: " + str(candidate("112233445566778899AABBCCDDEEFF00"))  
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate([]) == 0
+
+
+2026-05-24 12:19:02 - Error: unexpected indent (<string>, line 1).
+ Solution:  Please use proper indentations in your code. It is necessary to write a code which will allow a programmer to develop a concise and efficient program..
+ Test: 
+
+METADATA = {}
+
+
+def check(candidate):
+    assert candidate('') == ''
+    assert candidate("abcdef\nghijklm") == 'bcdf\nghjklm'
+    assert candidate('fedcba') == 'fdcb'
+    assert candidate('eeeee') == ''
+    assert candidate('acBAA') == 'cB'
+    assert candidate('EcBOO') == 'cB'
+    assert candidate('ybcd') == 'ybcd'
+
+
+2026-05-24 12:19:03 - Error: .
+ Solution: def count_upper(s):
+    vowel_count = 0
+    for index in range(len(s)):
+        if s[index].upper() == 'A' or s[index].upper() == 'E' or s[index].upper() == 'I' or (s[index].upper() == 'O') or (s[index].upper() == 'U'):
+            vowel_count += 1
+    if vowel_count % 2 == 0:
+        return vowel_count
+    else:
+        return None.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate('aBCdEf')  == 1
+    assert candidate('abcdefg') == 0
+    assert candidate('dBBE') == 0
+    assert candidate('B')  == 0
+    assert candidate('U')  == 1
+    assert candidate('') == 0
+    assert candidate('EEEE') == 2
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True
+
+
+2026-05-24 12:24:34 - Error: Second test error: True.
+ Solution: def check_dict_case(dict):
+    """
+    Given a dictionary, return True if all keys are strings in lower 
+    case or all keys are strings in upper case, else return False.
+    The function should return False is the given dictionary is empty.
+    Examples:
+    check_dict_case({"a":"apple", "b":"banana"}) should return True.
+    check_dict_case({"a":"apple", "A":"banana", "B":"banana"}) should return False.
+    check_dict_case({"a":"apple", "8":"banana", "a":"apple"}) should return False.
+    check_dict_case({"Name":"John", "Age":"36", "City":"Houston"}) should return False.
+    """
+    if not any(map(str.islower, dict)):
+        return False
+    for key in dict:
+        if not dict[key]:
+            return False
+    return True.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate({"p":"pineapple", "b":"banana"}) == True, "First test error: " + str(candidate({"p":"pineapple", "b":"banana"}))
+    assert candidate({"p":"pineapple", "A":"banana", "B":"banana"}) == False, "Second test error: " + str(candidate({"p":"pineapple", "A":"banana", "B":"banana"}))
+    assert candidate({"p":"pineapple", 5:"banana", "a":"apple"}) == False, "Third test error: " + str(candidate({"p":"pineapple", 5:"banana", "a":"apple"}))
+    assert candidate({"Name":"John", "Age":"36", "City":"Houston"}) == False, "Fourth test error: " + str(candidate({"Name":"John", "Age":"36", "City":"Houston"}))
+    assert candidate({"STATE":"NC", "ZIP":"12345" }) == True, "Fifth test error: " + str(candidate({"STATE":"NC", "ZIP":"12345" }))      
+    assert candidate({"fruit":"Orange", "taste":"Sweet" }) == True, "Fourth test error: " + str(candidate({"fruit":"Orange", "taste":"Sweet" }))      
+
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate({}) == False, "1st edge test error: " + str(candidate({}))
+
+
+2026-05-24 19:54:22 - Error: This prints if this assert fails 1 (good for debugging!).
+ Solution: def compare(game, guess):
+    return [abs(g - g) for g, g in zip(game, guess)].
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1,2,3,4,5,1],[1,2,3,4,2,-2])==[0,0,0,0,3,3], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([0,0,0,0,0,0],[0,0,0,0,0,0])==[0,0,0,0,0,0], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([1,2,3],[-1,-2,-3])==[2,4,6], "This prints if this assert fails 1 (good for debugging!)"
+    assert candidate([1,2,3,5],[-1,2,3,4])==[2,0,0,1], "This prints if this assert fails 1 (good for debugging!)"
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+
+
+2026-05-24 20:32:21 - Error: .
+ Solution: def digits(n):
+    product = 1
+    for digit_char in str(n):
+        digit = int(digit_char)
+        if digit % 2 == 1:
+            product *= digit
+    return product if product != 1 else 0.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(5) == 5
+    assert candidate(54) == 5
+    assert candidate(120) ==1
+    assert candidate(5014) == 5
+    assert candidate(98765) == 315
+    assert candidate(5576543) == 2625
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(2468) == 0
+
+
+2026-05-24 21:41:33 - Error: .
+ Solution: def digits(n):
+    odds = [int(d) for d in str(n) if int(d) % 2 == 1]
+    return 0 if not odds else 1.
+ Test: def check(candidate):
+
+    # Check some simple cases
+    assert candidate(5) == 5
+    assert candidate(54) == 5
+    assert candidate(120) ==1
+    assert candidate(5014) == 5
+    assert candidate(98765) == 315
+    assert candidate(5576543) == 2625
+
+    # Check some edge cases that are easy to work out by hand.
+    assert candidate(2468) == 0
+
+
